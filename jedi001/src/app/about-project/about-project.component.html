@@ -1,0 +1,41 @@
+<div class="row">
+<div class="col-xs" style="background-color: lightblue">
+    <h1>{{ title }}</h1>
+    <button (click)="onButtonClick()">clicke me!</button>
+     <!-- renders section if aboutProject exists -->
+    <div *ngIf="aboutProject"> <!-- equivalent to 'aboutProject !== undefined && aboutProject !== null' -->
+      <h2>{{ aboutProject.title }}</h2>
+      <h3>{{ aboutProject.subtitle }}</h3>
+      <p>{{ aboutProject.description }}</p>
+    </div>
+    <!-- alternative: -->
+    <h2> {{ aboutProject ? aboutProject.title : "" }}</h2>
+    <!-- or -->
+    <h3> {{ aboutProject?.subtitle }}</h3>
+    <p> {{ aboutProject?.author?.name}}</p>
+  </div>
+  <div class="col-xs" style="background-color: rgb(230, 201, 173)">List of Authors:
+    <ul>
+      <li *ngFor="let at of lstAuthors">
+        <div [innerHTML]="at.getFullName()"></div>
+        <div [innerHTML]="at.insertHTML2()"></div>
+        <!--
+        <ul *ngIf="at.lst_social_links">
+          <li *ngFor="let sl of at.lst_social_links">
+            {{ sl.name + ': ' + sl.url}}
+          </li>
+        </ul>-->
+        <!--<br>{{ at.lst_social_links }}-->
+            <div *ngFor="let sl of at.lst_social_links" style="background-color: rgb(229, 230, 173)">
+              <!--{{ sl.name + ': ' + sl.url}}-->
+              <!--<a href="{{sl.url}}">{{ sl.name }}</a>-->
+              <!-- this does not work: -->
+              <div [innerHTML]="sl.printAnchor()"></div>
+              <!--<a [href]="sl.url + 'balbla'">{{ sl.name }}</a>--><!-- [] ho farem servir per passar attributs als nostres tags, -->
+            </div>
+            <br>
+      </li>
+    </ul>
+    <button (click)="addAuthor()">Add author</button>
+  </div>
+</div>
