@@ -1,29 +1,79 @@
 <div class="row">
-    <form>
-      <div class="col-xs-12 text-center">
-    <label >name</label>
-    <input name="name" type="text" [(ngModel)]="user.name"/>
-  </div>
-  <div class="col-xs-12 text-center">
-      <label >last name</label>
-      <input name="last-name" type="text" [(ngModel)]="user.last_name"/>
+  <!-- falta afegir que el <enter> envies tb el form -->
+  <form
+    #signInForm="ngForm"
+  >
+  <!-- si fiquem username, email, password google chrome automaticament ho detecta i pot guardar el passwd per futures sessions -->
+    <div class="col-xs-12 text-center">
+      <label>name</label>
+      <input 
+        required
+        minlength=5
+        name="name" 
+        type="text" 
+        [(ngModel)]="user.name" 
+        #name="ngModel"
+        />
+        <small *ngIf="name.invalid && name.dirty">Camp obligatori</small>
     </div>
     <div class="col-xs-12 text-center">
-        <label>e-mail</label>
-        <input name="email" type="text" [(ngModel)]="user.email"/>
-      </div>
-  <div class="col-xs-12 text-center">
-    <label >password</label>
-    <input  name="password" type="password" [(ngModel)]="user.password"/>
-  </div>
-  <div class="col-xs-12 text-center">
-    <label >re-type password</label>
-    <input  name="password" type="password" [(ngModel)]="user.password2"/>
-  </div>
-  <div class="col-xs-12 text-center">
-    <button type="submit">Sign In</button>
-    <a class="btn btn-ok" (click)="onSend()">hola</a>
-  </div>
-  
-</form>
+      <label>last name</label>
+      <input 
+      required
+      minlength=5
+        name="last-name" 
+        type="text" 
+        [(ngModel)]="user.last_name" 
+        #lastname="ngModel"
+        />
+        <small *ngIf="lastname.invalid && lastname.dirty">Camp obligatori</small>
+    </div>
+    <div class="col-xs-12 text-center">
+      <label>e-mail</label>
+      <input 
+        required
+        minlength=5
+        name="email" 
+        type="text" 
+        [(ngModel)]="user.email" 
+        #email="ngModel"
+        />
+        <small *ngIf="email.invalid && email.dirty">Camp obligatori</small>
+    </div>
+    <div class="col-xs-12 text-center">
+      <label>password</label>
+      <input 
+      required
+      minlength=6
+        name="password" 
+        type="password" 
+        [(ngModel)]="user.password" 
+        #pass="ngModel"
+        />
+        <small *ngIf="pass.invalid && pass.dirty">Camp obligatori</small>
+    </div>
+    <div class="col-xs-12 text-center">
+      <label>re-type password</label>
+      <input 
+      required
+      minlength=6
+        name="password2" 
+        type="password" 
+        [(ngModel)]="repeatedPassword" 
+        #pass2="ngModel"
+        />
+        <small *ngIf="pass2.invalid && pass2.dirty">Camp obligatori</small>
+        <small *ngIf="pass2.dirty && ( repeatedPassword !== user.password)">password does not match</small>
+        <small *ngIf="pass2.dirty && !arePasswordsEqual()">no iguales</small>
+    </div>
+    <div class="col-xs-12 text-center">
+     
+      <a 
+        class="btn btn-ok" 
+        (click)="onSend()"
+        [class.disabled]="!signInForm.valid || !arePasswordsEqual()"
+        >hola</a> <!-- abans signInForm.fomr.valid. angular va canviant, s'ha de checkejar... -->
+    </div>
+
+  </form>
 </div>

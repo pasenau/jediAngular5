@@ -20,6 +20,17 @@
       [(ngModel)]="password"
       />
       <small *ngIf="!onCheckPassword2()">El password ha de tenir mínim {{minPasswordLength}} lletres.</small>
+
+<!--
+<input 
+name="password" 
+type="password"
+[ngModel]="password"
+(ngModelChange)="onCheckPassword3($event)" 
+/>
+<!=--  $event --  ngModelChange pasa com a parameter a la funcion el que l'usuari esta escrivint --=>
+<small *ngIf="!isPasswordCorrect">El password ha de tenir mínim {{minPasswordLength}} lletres.</small>
+-->
 </div>
 <div class="col-xs-12 text-center" style="background-color:lightblue">
   <a 

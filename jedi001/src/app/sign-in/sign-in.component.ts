@@ -9,6 +9,7 @@ import User from '../_models/user.model'
 export class SignInComponent implements OnInit {
 
   user: User = new User()
+  repeatedPassword = ''
 
   constructor() { }
 
@@ -17,5 +18,9 @@ export class SignInComponent implements OnInit {
 
   onSend() {
     console.log( 'New user is: ' + this.user.print())
+  }
+
+  arePasswordsEqual() {
+    return this.user.password === this.repeatedPassword
   }
 }

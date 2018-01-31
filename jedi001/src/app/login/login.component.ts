@@ -27,4 +27,8 @@ export class LoginComponent {
     return this.isPasswordCorrect // no caldria guardar-ho en una variable...
   }
 
+  onCheckPassword3( txt) {
+    this.password = txt
+    this.isPasswordCorrect = this.password.length >= this.minPasswordLength
+  }
 }

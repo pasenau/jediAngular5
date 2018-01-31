@@ -1,1 +1,12 @@
 .text-center { text-align: center}
+input {
+    &.ng-dirty.ng-invalid {
+        border-color: red
+    }
+}
+btn {
+    .disabled {
+        pointer-events: none;
+        color: #cccccc;
+    }
+}
