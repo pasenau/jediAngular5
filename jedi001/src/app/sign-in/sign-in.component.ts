@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import User from '../_models/user.model'
 import { ApiService } from '../_shared/_services/api.service';
+import ApiUser from '../_models/api-user.model';
 
 @Component({
   selector: 'app-sign-in',
@@ -17,8 +18,14 @@ export class SignInComponent  {
   ) { }
 
   onSend() {
+    // convert my User form to api-user
+    const apiUser = new ApiUser
+    apiUser.email = this.user.email
+    apiUser.name = this.user.name
+    apiUser.lastName = this.user.last_name
+    apiUser.password = this.user.password
     this._api
-      .signin( this.user) // aixo es una promise, no puc asumir que hagi acabat de donarlo d'alta.
+      .signin( apiUser) // aixo es una promise, no puc asumir que hagi acabat de donarlo d'alta.
       // el server encara no m'ha contestat
       .then( response => {
         // el server m'ha respost

@@ -1,6 +1,8 @@
 {
     "/api": {
         "target": "http://jedi-card-api.herokuapp.com:80",
+        "changeOrigin": true,
+        "logLevel": "info",
         "secure": false
     }
 }

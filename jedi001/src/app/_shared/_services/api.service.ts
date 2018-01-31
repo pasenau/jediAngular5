@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-import User from '../../_models/user.model'
+import ApiUser from '../../_models/api-user.model'
 
 @Injectable()       // patro de diseny: DependencyInjection
 export class ApiService {
@@ -14,7 +14,7 @@ export class ApiService {
     private _http: HttpClient
   ) {}
 
-  signin( user: User): Promise< any> { // any fins que no tinguen la cosa mes definida
+  signin( user: ApiUser): Promise< any> { // any fins que no tinguen la cosa mes definida
     // _http.post() retorna observable. que no está estes, nomes ho fa servir angular
     // si fiquem directament la url es donara error CORS
     // estem fent servir localhost com a server i canviem a un extern --> error de seguretat
