@@ -1,10 +1,13 @@
-<div class="row">
-<div class="col-xs-12 text-center">
-  <label for="e-mail" style="text-align: left">e-mail</label>
-  <input name="email" type="text" [(ngModel)]="email"/>
-</div>
-<div class="col-xs-12 text-center">
-  <p style="text-align: left">password</p>
+<div class="login">
+    <h1 class="text-center">♢ JEDI Cards ♢</h1>
+    <h4 class="text-center">Por favor, introduce tu usuario y contraseña.</h4>
+    
+  <div class="form-section">
+    <label for="email" >e-mail</label>
+    <input name="email" type="email" [(ngModel)]="email" />
+  </div>
+  <div class="form-section">
+    <label for="password" >password</label>
   <!-- format 1
   <input 
     name="password" 
@@ -13,31 +16,23 @@
     (ngModelChange)="onCheckPassword()" 
     />
     <small *ngIf="!isPasswordCorrect">El password ha de tenir mínim {{minPasswordLength}} lletres.</small>
--->
+  -->
+    <input name="password" type="password" [(ngModel)]="password" />
+    <small *ngIf="!onCheckPassword2()">
+      <br>El password ha de tenir mínim {{minPasswordLength}} lletres.</small>
+  <!--
     <input 
-      name="password" 
-      type="password"
-      [(ngModel)]="password"
-      />
-      <small *ngIf="!onCheckPassword2()">El password ha de tenir mínim {{minPasswordLength}} lletres.</small>
-
-<!--
-<input 
-name="password" 
-type="password"
-[ngModel]="password"
-(ngModelChange)="onCheckPassword3($event)" 
-/>
-<!=--  $event --  ngModelChange pasa com a parameter a la funcion el que l'usuari esta escrivint --=>
-<small *ngIf="!isPasswordCorrect">El password ha de tenir mínim {{minPasswordLength}} lletres.</small>
--->
-</div>
-<div class="col-xs-12 text-center" style="background-color:lightblue">
-  <a 
-  class="btn btn-ok" 
-  (click)="onSend()"
-  [class.disabled]="!password || !email || !isPasswordCorrect" 
-  >hola</a><!-- per deshabilitar el boto si hi pass o email son buits -->
-</div>
+    name="password" 
+    type="password"
+    [ngModel]="password"
+    (ngModelChange)="onCheckPassword3($event)" 
+  />
+  <!=--  $event --  ngModelChange pasa com a parameter a la funcion el que l'usuari esta escrivint --=>
+  <small *ngIf="!isPasswordCorrect">El password ha de tenir mínim {{minPasswordLength}} lletres.</small>
+  -->
+  </div>
+  <br>
+  <a class="btn btn-ok" (click)="onSend()" [class.disabled]="!password || !email || !isPasswordCorrect">hola</a>
+  <!-- per deshabilitar el boto si hi pass o email son buits -->
 </div>
       

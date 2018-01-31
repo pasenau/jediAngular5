@@ -1,0 +1,26 @@
+label { /* make labels full line and next field in new line */
+	display: block;
+	font-weight: bold;
+	font-size: 16px;
+	padding: .3em 0;
+}
+
+input { /* big-wide rounded box around input fiels, coloured if invalid */
+	padding: 0.5em;
+	font-size: 15px;
+	border-radius: 4px;
+	border: 2px solid @color-border-input;
+
+	&.ng-dirty.ng-invalid {
+		border-color: @color-invalid;
+	}
+}
+
+.form-section {
+    /* adding a margin in div, and make input fill widht */
+	margin: .4em 0;
+
+	input {
+		width: 100%;
+	}
+}

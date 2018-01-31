@@ -1,12 +1,24 @@
-.text-center { text-align: center}
-input {
-    &.ng-dirty.ng-invalid {
-        border-color: red
-    }
+
+html {
+	box-sizing: border-box;
 }
-btn {
-    .disabled {
-        pointer-events: none;
-        color: #cccccc;
-    }
+
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+body, html {
+	overflow-x: hidden;  /* don't show horizontal scrollbar */
+	margin: 0;
+	color: @main-text-color;
+}
+
+.main-container { /* avoid width-maximize the interior on big screens, > 1000px */
+	max-width: 1000px;
+	margin: auto;
+}
+
+a { /* we're using <a> anchor's as buttons, so don't add any 'link' decoration */
+	color: @main-text-color;
+	text-decoration: none;
 }
