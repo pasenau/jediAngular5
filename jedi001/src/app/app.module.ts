@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router'
 import { routes } from './routes'
 import { LoginComponent } from './login/login.component'
 import { SignInComponent } from './sign-in/sign-in.component'
+import { ApiService } from './_shared/_services/api.service'
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -13,9 +15,12 @@ import { SignInComponent } from './sign-in/sign-in.component'
   ],
   imports: [
     RouterModule.forRoot( routes),
+    HttpClientModule,
     BrowserModule
   ],
-  providers: [],
+  providers: [
+    ApiService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
