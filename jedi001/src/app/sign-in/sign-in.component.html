@@ -1,10 +1,12 @@
-<div class="row">
+<div class="login">
+  	<h1 class="text-center">♢ JEDI Cards ♢</h1>
+		<h4 class="text-center">Regístrate a la aplicación</h4>
   <!-- falta afegir que el <enter> envies tb el form -->
   <form
     #signInForm="ngForm"
   >
   <!-- si fiquem username, email, password google chrome automaticament ho detecta i pot guardar el passwd per futures sessions -->
-    <div class="col-xs-12 text-center">
+    <div class="form-section">
       <label>name</label>
       <input 
         required
@@ -16,7 +18,7 @@
         />
         <small *ngIf="name.invalid && name.dirty">Camp obligatori</small>
     </div>
-    <div class="col-xs-12 text-center">
+    <div class="form-section">
       <label>last name</label>
       <input 
       required
@@ -28,7 +30,7 @@
         />
         <small *ngIf="lastname.invalid && lastname.dirty">Camp obligatori</small>
     </div>
-    <div class="col-xs-12 text-center">
+    <div class="form-section">
       <label>e-mail</label>
       <input 
         required
@@ -40,7 +42,7 @@
         />
         <small *ngIf="email.invalid && email.dirty">Camp obligatori</small>
     </div>
-    <div class="col-xs-12 text-center">
+    <div class="form-section">
       <label>password</label>
       <input 
       required
@@ -52,7 +54,7 @@
         />
         <small *ngIf="pass.invalid && pass.dirty">Camp obligatori</small>
     </div>
-    <div class="col-xs-12 text-center">
+    <div class="form-section">
       <label>re-type password</label>
       <input 
       required
@@ -63,11 +65,10 @@
         #pass2="ngModel"
         />
         <small *ngIf="pass2.invalid && pass2.dirty">Camp obligatori</small>
-        <small *ngIf="pass2.dirty && ( repeatedPassword !== user.password)">password does not match</small>
-        <small *ngIf="pass2.dirty && !arePasswordsEqual()">no iguales</small>
+        <small *ngIf="pass2.dirty && ( repeatedPassword !== user.password)"><br>password does not match</small>
+        <small *ngIf="pass2.dirty && !arePasswordsEqual()">, no iguales</small>
     </div>
-    <div class="col-xs-12 text-center">
-     
+    <div class="form-section">
       <a 
         class="btn btn-ok" 
         (click)="onSend()"
