@@ -7,6 +7,7 @@ http://react.jediupc.com
 (Requisites: node.js installed)
 * Just download the code and do
 ```
+cd jedi001
 npm install
 npm start
 ```
