@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core'
 import { AppComponent } from './app.component'
 import { RouterModule } from '@angular/router'
 import { routes } from './routes'
+import { LoginComponent } from './login/login.component'
+import { SignInComponent } from './sign-in/sign-in.component'
 
 @NgModule({
   declarations: [
