@@ -19,8 +19,6 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "../node_modules/bootstrap/scss/bootstrap.scss",
-        "../node_modules/bulma/css/bulma.css",
         "../node_modules/flexboxgrid/css/flexboxgrid.min.css",
         "styles/styles.less"
       ],
