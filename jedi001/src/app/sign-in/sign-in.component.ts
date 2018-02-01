@@ -24,6 +24,7 @@ export class SignInComponent  {
     apiUser.name = this.user.name
     apiUser.lastName = this.user.last_name
     apiUser.password = this.user.password
+    // tambe podiem fer la conversio del objecte dins del servei
     this._api
       .signin( apiUser) // aixo es una promise, no puc asumir que hagi acabat de donarlo d'alta.
       // el server encara no m'ha contestat

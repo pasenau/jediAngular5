@@ -2,6 +2,7 @@
     "/api": {
         "target": "http://jedi-card-api.herokuapp.com:80",
         "changeOrigin": true,
+        "changeOrigionDescription": "per canviar de domini, de localhost a herokuapp.com",
         "logLevel": "info",
         "secure": false
     }
