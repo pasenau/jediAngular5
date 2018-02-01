@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import User from '../_models/user.model'
 import { ApiService } from '../_shared/_services/api.service'
 import ApiUser from '../_models/api-user.model'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-sign-in',
@@ -13,8 +14,10 @@ export class SignInComponent  {
   user: User = new User()
   repeatedPassword = ''
   isLoading = false
+  private readonly decksUrl = '/decks'
 
   constructor(
+    private _router: Router,
     private _api: ApiService // injecto aqui el servei de comunicacio
   ) { }
 
@@ -35,6 +38,7 @@ export class SignInComponent  {
         // el server m'ha respost
         console.log( response)
         // redireccionar a una altra pagina
+        this._router.navigateByUrl( this.decksUrl)
       })           // funcion de la promise a executar quan hagi rebut del servidor
       .catch( error => {
         this.isLoading = false

@@ -1,13 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser'
 import { NgModule } from '@angular/core'
+import { RouterModule } from '@angular/router'
+import { HttpClientModule } from '@angular/common/http'
+import { CookieService } from 'ng2-cookies'
 
 import { AppComponent } from './app.component'
-import { RouterModule } from '@angular/router'
 import { routes } from './routes'
 import { LoginComponent } from './login/login.component'
 import { SignInComponent } from './sign-in/sign-in.component'
 import { ApiService } from './_shared/_services/api.service'
-import { HttpClientModule } from '@angular/common/http'
+import { AuthService } from './_shared/_services/auth.service'
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { HttpClientModule } from '@angular/common/http'
     BrowserModule
   ],
   providers: [
-    ApiService
+    ApiService,
+    AuthService,
+    CookieService
   ],
   bootstrap: [AppComponent]
 })

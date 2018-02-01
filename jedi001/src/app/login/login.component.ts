@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core'
 import { ApiService } from '../_shared/_services/api.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-login',
@@ -12,6 +13,7 @@ export class LoginComponent {
   // eventually in debug mode, they can be accesed from template but in production no!
 
   readonly minPasswordLength = 6  // readonly = const, private = només aquí
+  private readonly decksUrl = '/decks'
 
   email = ''
   password = ''
@@ -19,6 +21,7 @@ export class LoginComponent {
   isLoading = false
 
   constructor(
+    private _router: Router,
     private _api: ApiService // injecto aqui el servei de comunicacio
   ) { }
 
@@ -33,6 +36,7 @@ export class LoginComponent {
         // el server m'ha respost
         console.log( response)
         // redireccionar a una altra pagina
+        this._router.navigateByUrl( this.decksUrl)
       })           // funcion de la promise a executar quan hagi rebut del servidor
       .catch( error => {
         this.isLoading = false
