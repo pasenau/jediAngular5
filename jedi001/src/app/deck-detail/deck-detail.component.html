@@ -19,6 +19,6 @@
     class="btn btn-ok" 
     (click)="onSend()" 
     [class.disabled]="!isFormSendable( deckForm.valid)"
-    >Create</a>
+    >{{ myDeck.id ? 'Update' : 'Create'}}</a>
 </form>
 </div>

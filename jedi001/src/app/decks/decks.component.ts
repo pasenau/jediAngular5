@@ -41,7 +41,8 @@ export class DecksComponent implements OnInit {
       // no ens arribara el catch() pq ja el tenim capturat a la api.service
     console.log( 'Got list of decks')
   }
-  onDelete( id: string) {
+  onDelete( id: string, event: MouseEvent) {
+    event.stopPropagation()
     this.isLoading = true
     this._api
       .deleteDeck( id) // aixo es una promise, no puc asumir que hagi acabat de donarlo d'alta.
