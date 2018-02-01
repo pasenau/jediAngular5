@@ -35,34 +35,24 @@ export class DecksComponent implements OnInit {
         this.lstDecks = response
         // redireccionar a una altra pagina
       })           // funcion de la promise a executar quan hagi rebut del servidor
-      .catch( error => {
-        this.isLoading = false
-        // quan la promise falla
-        console.log( 'ERROR: ' + error)
-        // missatge d'error a la form
-        // bootstrap toast / bulma alert notifications, per mostrar errors en un shared component
-      })
+      // .catch( error => {
+      //   this.isLoading = false
+      //  })
+      // no ens arribara el catch() pq ja el tenim capturat a la api.service
     console.log( 'Got list of decks')
   }
   onDelete( deck: ApiDeck) {
     this.isLoading = true
     this._api
-      .deleteDeck( deck) // aixo es una promise, no puc asumir que hagi acabat de donarlo d'alta.
+      .deleteDeck( deck.id) // aixo es una promise, no puc asumir que hagi acabat de donarlo d'alta.
       // el server encara no m'ha contestat
       .then( response => {
         this.isLoading = false
         // el server m'ha respost
         console.log( response) // list of ApiDecks
-        this.lstDecks = response
+        // this.lstDecks = response
         // redireccionar a una altra pagina
       })           // funcion de la promise a executar quan hagi rebut del servidor
-      .catch( error => {
-        this.isLoading = false
-        // quan la promise falla
-        console.log( 'ERROR: ' + error)
-        // missatge d'error a la form
-        // bootstrap toast / bulma alert notifications, per mostrar errors en un shared component
-      })
     console.log( 'deleting ' + deck.title + ' ( ' + deck.id + ' )')
 
     // actualize list of decks

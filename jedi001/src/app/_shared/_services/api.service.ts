@@ -52,8 +52,14 @@ export class ApiService {
         }
       })
   }
-  deleteDeck( deck: ApiDeck): Promise< any> {
-    // return this._http.post( this.apiUrl + 'decks', {}).toPromise()
-    return this._http.delete( this.apiUrl + 'decks/' + deck.id).toPromise()
+  deleteDeck( deckId: string): Promise< any> {
+    return this._http.delete( this.apiUrl + 'decks/' + deckId)
+    .toPromise()
+    .catch( e => { // interesa que aquest catch estigui a totes les crides que fem al servidor
+      if ( e.status === 401) { // e.status es un enter
+        this._auth.logout()
+        this._router.navigateByUrl( this.loginUrl)
+      }
+    })
   }
 }
