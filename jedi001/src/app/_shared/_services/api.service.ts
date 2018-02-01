@@ -45,21 +45,36 @@ export class ApiService {
     // return this._http.post( this.apiUrl + 'decks', {}).toPromise()
     return this._http.get( this.apiUrl + 'decks')
       .toPromise()
-      .catch( e => { // interesa que aquest catch estigui a totes les crides que fem al servidor
-        if ( e.status === 401) { // e.status es un enter
-          this._auth.logout()
-          this._router.navigateByUrl( this.loginUrl)
-        }
-      })
+      .catch( e => this.handleError( e))
   }
   deleteDeck( deckId: string): Promise< any> {
     return this._http.delete( this.apiUrl + 'decks/' + deckId)
     .toPromise()
-    .catch( e => { // interesa que aquest catch estigui a totes les crides que fem al servidor
-      if ( e.status === 401) { // e.status es un enter
-        this._auth.logout()
-        this._router.navigateByUrl( this.loginUrl)
-      }
-    })
+    .catch( e => this.handleError( e))
+    // opcio2
+    // return this.delete( this.apiUrl + 'decks/' + deckId)
+    // opcio3
+    // return this.fetch( 'delete', this.apiUrl + 'decks/' + deckId)
+  }
+
+  private handleError( err) {
+    if ( err.status === 401) { // e.status es un enter
+      this._auth.logout()
+      this._router.navigateByUrl( this.loginUrl)
+    }
+  }
+
+  // opcio2
+  private delete( url) {
+    return this._http.delete(url)
+    .toPromise()
+    .catch( e => this.handleError( e))
+  }
+
+  // opcio3
+  private fetch( verb, url, data = {}) {
+    return this._http[ verb]( url, data)
+    .toPromise()
+    .catch( e => this.handleError( e))
   }
 }
