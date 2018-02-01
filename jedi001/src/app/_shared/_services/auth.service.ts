@@ -13,4 +13,10 @@ export class AuthService {
     // nomes cal checkejar si existeix
     return this._cookies.check( this.cookieToken)
   }
+
+  logout() {
+    // this._cookies.delete( this.cookieToken)
+    // hauriem d'esborrar totes les cookies de l'usuari
+    this._cookies.deleteAll()
+  }
 }

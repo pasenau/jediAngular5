@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
 import ApiUser from '../../_models/api-user.model'
-import ApiDeck from '../../_models/api-deck.model';
+import ApiDeck from '../../_models/api-deck.model'
+import { Router } from '@angular/router'
+import { AuthService } from './auth.service'
 
 @Injectable()       // patro de diseny: DependencyInjection
 export class ApiService {
@@ -10,9 +12,12 @@ export class ApiService {
   // per tenir 2 versions: environment.prod.ts i environment.ts /(debug)
   // private readonly apiUrl = 'https://jedi-card-api.herokuapp.com/api/'
   private readonly apiUrl = '/api/'
+  private readonly loginUrl = '/login'
 
   constructor(
-    private _http: HttpClient
+    private _http: HttpClient,
+    private _router: Router,
+    private _auth: AuthService
   ) {}
 
   signin( user: ApiUser): Promise< any> { // any fins que no tinguen la cosa mes definida
@@ -38,7 +43,14 @@ export class ApiService {
 
   getDecks( ): Promise< any> {
     // return this._http.post( this.apiUrl + 'decks', {}).toPromise()
-    return this._http.get( this.apiUrl + 'decks').toPromise()
+    return this._http.get( this.apiUrl + 'decks')
+      .toPromise()
+      .catch( e => { // interesa que aquest catch estigui a totes les crides que fem al servidor
+        if ( e.status === 401) { // e.status es un enter
+          this._auth.logout()
+          this._router.navigateByUrl( this.loginUrl)
+        }
+      })
   }
   deleteDeck( deck: ApiDeck): Promise< any> {
     // return this._http.post( this.apiUrl + 'decks', {}).toPromise()
