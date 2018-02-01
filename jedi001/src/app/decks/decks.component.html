@@ -7,12 +7,15 @@
       [class.disabled]="isLoading"
       >{{ isLoading ? 'Cargando...' : 'Get decks'}}</a>
     <ul>
+      <!--  [routerLink]="'/deck/' + deck.id"   === [ '/deck', deck.id] -->
       <li *ngFor="let deck of lstDecks" 
         class="row middle-xs"
+        [routerLink]="[ '/deck', deck.id]"
         style="background-color: rgb(229, 230, 173)">
 
           <h2>{{ deck.title}}</h2>
           <h5>{{ deck.description}}</h5>
+          <p>id = {{ deck.id}} | user_id = {{ deck.user_id}}</p>
     <a 
       class="btn btn-delete" 
       (click)="onDelete( deck.id)" 
@@ -20,7 +23,8 @@
       >{{ isLoading ? 'Cargando...' : 'delete'}}</a>
       </li>
     </ul>
-    <div class="text-center" *ngIf="!lstDecks.length && !isLoading">
-      <i> ¡Vaya! Todavia no tienes ningún mazo</i>
+    <div class="text-center">
+      <i *ngIf="!lstDecks.length && !isLoading"> ¡Vaya! Todavia no tienes ningún mazo<br></i>
+      <a class="underline" [routerLink]="'/deck/create'">Crea un nuevo mazo</a>
     </div>
 </div>

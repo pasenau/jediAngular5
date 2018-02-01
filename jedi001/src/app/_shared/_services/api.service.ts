@@ -47,6 +47,12 @@ export class ApiService {
       .toPromise()
       .catch( e => this.handleError( e))
   }
+  getDeck( id: string): Promise< any> {
+    // return this._http.post( this.apiUrl + 'decks', {}).toPromise()
+    return this._http.get( this.apiUrl + 'decks/' + id)
+      .toPromise()
+      .catch( e => this.handleError( e))
+  }
   deleteDeck( deckId: string): Promise< any> {
     return this._http.delete( this.apiUrl + 'decks/' + deckId)
     .toPromise()
@@ -55,6 +61,17 @@ export class ApiService {
     // return this.delete( this.apiUrl + 'decks/' + deckId)
     // opcio3
     // return this.fetch( 'delete', this.apiUrl + 'decks/' + deckId)
+  }
+
+  postDeck( deck: ApiDeck) {
+    return this._http.post( this.apiUrl + 'decks', deck)
+    .toPromise()
+    .catch( e => this.handleError( e))
+  }
+  putDeck( deck: ApiDeck) {
+    return this._http.put( this.apiUrl + 'decks/' + deck.id, deck)
+    .toPromise()
+    .catch( e => this.handleError( e))
   }
 
   private handleError( err) {

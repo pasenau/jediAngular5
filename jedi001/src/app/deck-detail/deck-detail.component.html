@@ -1,0 +1,24 @@
+<div class="login">
+    <!--<h1 class="text-center">♢ JEDI Cards ♢</h1>-->
+    <h4 class="text-center" *ngIf="!myDeck.id">crea un nuevo mazo</h4>
+    <h4 class="text-center" *ngIf="myDeck.id">edita el mazo</h4>
+<form 
+  #deckForm="ngForm"
+  (keyup.enter)="isFormSendable( deckForm.valid) && onSend()"
+  >
+  <div class="form-section">
+    <label for="title" >title</label>
+    <input name="title" type="text" [(ngModel)]="myDeck.title" />
+  </div>
+  <div class="form-section">
+    <label for="description" >description</label>
+    <input name="description" type="text" [(ngModel)]="myDeck.description" />
+  </div>
+  <br>
+  <a 
+    class="btn btn-ok" 
+    (click)="onSend()" 
+    [class.disabled]="!isFormSendable( deckForm.valid)"
+    >Create</a>
+</form>
+</div>
