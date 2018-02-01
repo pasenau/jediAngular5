@@ -15,7 +15,7 @@
           <h5>{{ deck.description}}</h5>
     <a 
       class="btn btn-delete" 
-      (click)="onDelete( deck)" 
+      (click)="onDelete( deck.id)" 
       [class.disabled]="isLoading"
       >{{ isLoading ? 'Cargando...' : 'delete'}}</a>
       </li>

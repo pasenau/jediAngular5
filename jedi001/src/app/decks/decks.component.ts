@@ -41,21 +41,21 @@ export class DecksComponent implements OnInit {
       // no ens arribara el catch() pq ja el tenim capturat a la api.service
     console.log( 'Got list of decks')
   }
-  onDelete( deck: ApiDeck) {
+  onDelete( id: string) {
     this.isLoading = true
     this._api
-      .deleteDeck( deck.id) // aixo es una promise, no puc asumir que hagi acabat de donarlo d'alta.
+      .deleteDeck( id) // aixo es una promise, no puc asumir que hagi acabat de donarlo d'alta.
       // el server encara no m'ha contestat
-      .then( response => {
+      .then( deck => {
         this.isLoading = false
         // el server m'ha respost
-        console.log( response) // list of ApiDecks
-        // this.lstDecks = response
-        // redireccionar a una altra pagina
+        // refrescar la llista de decks
+        // 2 opcions
+        // - tornar a fer this.onSend()
+        // - esborrar de lstDecks la que hem esborrat
+        const idxDeck = this.lstDecks.findIndex( d => d.id === id)
+        this.lstDecks.splice( idxDeck, 1)
+        console.log( 'deleting ' + deck.title + ' ( ' + deck.id + ' )')
       })           // funcion de la promise a executar quan hagi rebut del servidor
-    console.log( 'deleting ' + deck.title + ' ( ' + deck.id + ' )')
-
-    // actualize list of decks
-    this.onSend()
   }
 }
