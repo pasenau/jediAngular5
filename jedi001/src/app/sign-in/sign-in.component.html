@@ -4,6 +4,7 @@
   <!-- falta afegir que el <enter> envies tb el form -->
   <form
     #signInForm="ngForm"
+    (keyup.enter)="isFormSendable( signInForm.valid) && onSend()"
   >
   <!-- si fiquem username, email, password google chrome automaticament ho detecta i pot guardar el passwd per futures sessions -->
     <div class="form-section">
@@ -72,7 +73,7 @@
       <a 
         class="btn btn-ok" 
         (click)="onSend()"
-        [class.disabled]="!signInForm.valid || !arePasswordsEqual() || isLoading"
+        [class.disabled]="!isFormSendable( signInForm.valid)"
         >{{ isLoading ? 'Cargando...' : 'Entrar'}}</a> <!-- abans signInForm.fomr.valid. angular va canviant, s'ha de checkejar... -->
     </div>
 

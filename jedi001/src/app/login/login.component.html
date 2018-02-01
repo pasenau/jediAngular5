@@ -1,7 +1,10 @@
 <div class="login">
     <h1 class="text-center">♢ JEDI Cards ♢</h1>
     <h4 class="text-center">Por favor, introduce tu usuario y contraseña.</h4>
-    
+<form 
+  #loginForm="ngForm"
+  (keyup.enter)="isFormSendable( loginForm.valid) && onSend()"
+  >
   <div class="form-section">
     <label for="email" >e-mail</label>
     <input name="email" type="email" [(ngModel)]="email" />
@@ -35,8 +38,12 @@
   <a 
     class="btn btn-ok" 
     (click)="onSend()" 
-    [class.disabled]="!password || !email || !isPasswordCorrect || isLoading"
+    [class.disabled]="!isFormSendable( loginForm.valid)"
     >{{ isLoading ? 'Cargando...' : 'Entrar'}}</a>
   <!-- per deshabilitar el boto si hi pass o email son buits -->
+  <div class="text-center">
+    Créate una cuenta <a class="underline" [routerLink]="'/sign-in'">aquí</a>. <!-- fixarse en "(codi JS)" ==> "'STRING'" (cometes) -->
+  </div>
+</form>
 </div>
       

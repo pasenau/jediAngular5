@@ -53,4 +53,8 @@ export class SignInComponent  {
   arePasswordsEqual() {
     return this.user.password === this.repeatedPassword
   }
+
+  isFormSendable( formValid: boolean) {
+    return formValid && this.arePasswordsEqual() && !this.isLoading
+  }
 }

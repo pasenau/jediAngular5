@@ -59,4 +59,9 @@ export class LoginComponent {
     this.password = txt
     this.isPasswordCorrect = this.password.length >= this.minPasswordLength
   }
+
+  isFormSendable( formValid: boolean) {
+    return formValid && this.email.length && this.password.length && this.isPasswordCorrect && !this.isLoading
+    // return formValid && this.arePasswordsEqual() && !this.isLoading
+  }
 }
