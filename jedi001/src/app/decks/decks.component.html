@@ -1,0 +1,23 @@
+<div class="decks">
+    <h1 class="text-center">♢ JEDI Cards ♢</h1>
+    <h4 class="text-center">Available decks</h4>
+    <a 
+      class="btn btn-ok" 
+      (click)="onSend()" 
+      [class.disabled]="isLoading"
+      >{{ isLoading ? 'Cargando...' : 'Get decks'}}</a>
+    <ul>
+      <li *ngFor="let deck of lstDecks" 
+        class="row middle-xs"
+        style="background-color: rgb(229, 230, 173)">
+
+          <h2>{{ deck.title}}</h2>
+          <h5>{{ deck.description}}</h5>
+    <a 
+      class="btn btn-delete" 
+      (click)="onDelete( deck)" 
+      [class.disabled]="isLoading"
+      >{{ isLoading ? 'Cargando...' : 'delete'}}</a>
+      </li>
+    </ul>
+</div>

@@ -72,8 +72,8 @@
       <a 
         class="btn btn-ok" 
         (click)="onSend()"
-        [class.disabled]="!signInForm.valid || !arePasswordsEqual()"
-        >hola</a> <!-- abans signInForm.fomr.valid. angular va canviant, s'ha de checkejar... -->
+        [class.disabled]="!signInForm.valid || !arePasswordsEqual() || isLoading"
+        >{{ isLoading ? 'Cargando...' : 'Entrar'}}</a> <!-- abans signInForm.fomr.valid. angular va canviant, s'ha de checkejar... -->
     </div>
 
   </form>

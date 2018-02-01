@@ -32,7 +32,11 @@
   -->
   </div>
   <br>
-  <a class="btn btn-ok" (click)="onSend()" [class.disabled]="!password || !email || !isPasswordCorrect">hola</a>
+  <a 
+    class="btn btn-ok" 
+    (click)="onSend()" 
+    [class.disabled]="!password || !email || !isPasswordCorrect || isLoading"
+    >{{ isLoading ? 'Cargando...' : 'Entrar'}}</a>
   <!-- per deshabilitar el boto si hi pass o email son buits -->
 </div>
       

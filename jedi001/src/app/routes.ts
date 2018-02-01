@@ -5,6 +5,7 @@ export const routes: Routes = [
     { path: '', loadChildren: './about-project/about-project.module#AboutProjectModule'},
     { path: 'login', loadChildren: './login/login.module#LoginModule'},
     { path: 'sign-in', loadChildren: './sign-in/sign-in.module#SignInModule'},
+    { path: 'decks', loadChildren: './decks/decks.module#DecksModule'},
     { path: '404', loadChildren: './not-found/not-found.module#NotFoundModule'}, // si fos comoponents, es baixarien totes les components
     { path: '**', redirectTo: '404', pathMatch: 'full'}
 ]
