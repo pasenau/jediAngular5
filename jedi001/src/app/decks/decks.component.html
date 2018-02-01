@@ -10,17 +10,21 @@
       <!--  [routerLink]="'/deck/' + deck.id"   === [ '/deck', deck.id] -->
       <li *ngFor="let deck of lstDecks" 
         class="row middle-xs"
-        [routerLink]="[ '/deck', deck.id]"
         style="background-color: rgb(229, 230, 173)">
-
+      <div 
+        class="col-xs-8"
+        [routerLink]="[ '/deck', deck.id]">
           <h2>{{ deck.title}}</h2>
           <h5>{{ deck.description}}</h5>
-          <p>id = {{ deck.id}} | user_id = {{ deck.user_id}}</p>
-    <a 
-      class="btn btn-delete" 
-      (click)="onDelete( deck.id)" 
-      [class.disabled]="isLoading"
-      >{{ isLoading ? 'Cargando...' : 'delete'}}</a>
+          <small>id = {{ deck.id}} | user_id = {{ deck.user_id}}</small>
+      </div>
+      <div class="col-xs-4 text-right">
+      <a 
+        class="btn btn-delete" 
+        (click)="onDelete( deck.id)" 
+        [class.disabled]="isLoading"
+        >{{ isLoading ? 'Cargando...' : 'delete'}}</a>
+      </div>
       </li>
     </ul>
     <div class="text-center">
