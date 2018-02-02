@@ -31,4 +31,20 @@
       <i *ngIf="!lstDecks.length && !isLoading"> ¡Vaya! Todavia no tienes ningún mazo<br></i>
       <a class="underline" [routerLink]="'/deck/create'">Crea un nuevo mazo</a>
     </div>
+    
+  <app-popup
+    #deletePopup
+    [popupTitle]="'Atención'"
+    [buttonNames] = "[ 'Borrar', 'Cancelar']"
+    (accept) = "onAcceptDelete( $event)"
+    > 
+    <!-- dins de app-pop podem ficar class="" per personalitzar la vista del popup segons aquest component -->
+    <!-- podemos pasar el código de la función OnDeleteDeck() como input pero queda sucio y nos dara problemas -->
+    <!-- ademas el componente decks es el que borra decks, no el componente popup -->
+    <!-- mejor que sea el popup que avise a decks -->
+    Hello from decks!
+    <!-- aqui dintre puc accedir als atributs de decks, no als de popup, encara que s'inserti allà -->
+    <!-- podem fer servir <ng-template> per definir el scope que volem per avaluar el js -->
+  </app-popup>
+
 </div>

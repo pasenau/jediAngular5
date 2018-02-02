@@ -1,0 +1,33 @@
+.popup {
+    position: fixed;
+    // position: relative   --> los top,bottom,left,right son relativos al último elemento (<div>) con el tag style="position:relative"
+    // fixed === son relativos al window
+    max-width: 500px;
+    z-index: 1; // en que Z estamos, el bg es '0', max = 32767. 
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 5em;
+    background-color: white ; // semitransparente que cubre toda la ventana
+  }
+
+  .popup-backdrop {
+    position: fixed;
+    // position: relative   --> los top,bottom,left,right son relativos al último elemento (<div>) con el tag style="position:relative"
+    // fixed === son relativos al window
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #00000055 ; // semitransparente que cubre toda la ventana
+  }
+.popup-title {
+    margin: 5px;
+    background-color: whitesmoke;
+}
+.popup-body {
+    margin: 10px
+}
+.popup-buttons * { // added '*' to add padding between internal elements of this class
+    margin-right: 10px;
+}
