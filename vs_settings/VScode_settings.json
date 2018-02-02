@@ -1,0 +1,44 @@
+{
+    "workbench.colorTheme": "Default Light+",
+    "git.autofetch": true,
+    // custom settings,
+    // Controla el tamaño de fuente en píxeles.
+    "editor.fontSize": 12,
+
+    "files.autoSaveDelay": 5000,
+    "files.autoSave": "afterDelay",
+
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true,
+        "**/*.csproj": true,
+        "**/*.user": true,
+        "**/*.vspscc": true,
+        "**/*.defaults": true,
+        "bower_components": true,
+        "**/obj": true,
+        "Service References": true,
+        "Properties" : true,
+        "**/node_modules" : true,
+        "ApplicationInsights.config": true,
+		    ".bin": true,
+        "bin": true,
+        ".vscode": true,
+        "**/package-lock.json": true,
+        "**/*.map": true,
+
+        // ANGULAR TESTING 
+        "**/karma.conf.js": true,
+        "**/protractor.conf.js": true,
+        "**/tsconfig.app.json": true,
+        "**/tsconfig.spec.json": true,
+        "**/*.component.spec.ts": true,
+        "**/*.service.spec.ts": true,
+        "*/src/test.ts": true,
+        "**/*.d.ts": true,
+        "e2e": true
+    }
+    
+}

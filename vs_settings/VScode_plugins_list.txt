@@ -1,0 +1,31 @@
+Angular 5 Snippets
+HTML Boilerplate
+HTML Snippets
+JavaScript (ES6) code snippets
+TSLint
+
+TCL
+markdownlint
+
+? Angular 5 and TypeScript/HTML VS Code Snippets
+? Angular v5 Snippets
+Astyle
+Beautify
+C/C++
+C++ Intellisense
+Debugger for Chrome
+ESLint
+Git Blame
+Git Easy
+Git Lens
+Git Project Manager
+Git Tags
+Git: Common Commands Suite
+Git: Pull - Remote/Branch Specified
+gitflow
+Node.js Modules Intellisense
+PowerShell
+Python
+Start git.bash
+vscode-git-grep
+vscode-icons
