@@ -33,6 +33,6 @@ export class AppAlertComponent implements OnInit {
   }
 
   isError() {
-    return this.alert.type === AlertType.Info
+    return this.alert.type === AlertType.Error
   }
 }
