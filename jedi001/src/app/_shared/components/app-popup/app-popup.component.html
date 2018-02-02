@@ -1,27 +1,31 @@
-<div class="popup" *ngIf="isOpen">
+<div class="popup" *ngIf="isOpen" 
+tabindex="0"
+(keyup.escape)="closePopup()"> <!-- tabindex so that <div> receives key events -->
   <h3 class="popup-title" *ngIf="popupTitle">{{ popupTitle}}</h3>
   <div class="popup-body">
     <ng-content></ng-content>
   </div>
   <div class="popup-buttons row end-xs">
-    
-      <!-- <a *ngFor="let bb of buttonNames; let i = index; let s of buttonStyles"
-          class="btn btn-ok col-xs-4 " 
-          >{{ bb}} {{ i}} {{ s}}</a> -->
-          <!-- <a *ngFor="let bb of lstButtons; let i = index; "
-              class="btn btn-ok col-xs-4 " 
-              >{{ bb.name}} {{ i}} {{ bb.style}}</a> -->
-    <a 
-    class="btn btn-ok col-xs-3"
-    (click)="onAccept()"
-    > {{ buttonNames[ 0]}}</a>
-    <a 
-    class="btn btn-cancel col-xs-3"
-    (click)="closePopup()"
-    > {{ buttonNames[ 1]}}</a>
+    <div class="col-xs-3"
+      (keyup.enter)="onAccept()" tabindex="0">
+      <a 
+        class="btn btn-ok"
+        (click)="onAccept()"
+      > {{ buttonNames[ 0]}}</a>
+    </div>
+
+    <div class="col-xs-3"
+      (keyup.enter)="closePopup()" tabindex="0">
+      <a 
+        class="btn btn-cancel"
+        (click)="closePopup()"
+      > {{ buttonNames[ 1]}}</a>
+    </div>
   </div>
 </div>
-<div class="popup-backdrop" *ngIf="isOpen">
+<div class="popup-backdrop" *ngIf="isOpen"
+tabindex="0"
+(keyup.escape)="closePopup()">
 </div>
 <!-- si ponemos el div padre con el ngIf, podemos estropear el estilo -->
 <!-- hay otra opcion en angular, .... -->

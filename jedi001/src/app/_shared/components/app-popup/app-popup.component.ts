@@ -14,6 +14,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
 // Popups especialitzats
 // diferent components export class AppMyPopup extends AppPopupComponent...
 export class AppPopupComponent {
+
   isOpen = false    // ha de ser publico pq lo usamos en el template y en decks.components
   // podemos hacerlo privado y usar getter y setter
 
@@ -31,10 +32,16 @@ export class AppPopupComponent {
     this.isOpen = true
   }
   closePopup() {
+    console.log( 'close')
     this.isOpen = false
   }
   onAccept() {
-    this.accept.emit( 'Hello')
+    console.log( 'accept')
+    // this.accept.emit( 'Hello')
     this.closePopup()
+  }
+
+  onKeyDown( ev: KeyboardEvent) {
+    console.log( 'event =' + ev.key)
   }
 }

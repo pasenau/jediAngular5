@@ -6,9 +6,8 @@
       (click)="onSend()" 
       [class.disabled]="isLoading"
       >{{ isLoading ? 'Cargando...' : 'Get decks'}}</a>
-    <ul>
       <!--  [routerLink]="'/deck/' + deck.id"   === [ '/deck', deck.id] -->
-      <li *ngFor="let deck of lstDecks" 
+      <div *ngFor="let deck of lstDecks" 
         class="row middle-xs"
         [routerLink]="[ '/deck', deck.id]"
         style="background-color: rgb(229, 230, 173)">
@@ -25,8 +24,7 @@
         [class.disabled]="isLoading"
         >{{ isLoading ? 'Cargando...' : 'delete'}}</a>
       </div>
-      </li>
-    </ul>
+    </div>
     <div class="text-center">
       <i *ngIf="!lstDecks.length && !isLoading"> ¡Vaya! Todavia no tienes ningún mazo<br></i>
       <a class="underline" [routerLink]="'/deck/create'">Crea un nuevo mazo</a>
