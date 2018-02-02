@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { AlertService } from '../../_services/alert.service';
-import { AlertNotice, AlertType } from '../../../_models/alert-notice.model';
+import { Component, OnInit } from '@angular/core'
+import { AlertService } from '../../_services/alert.service'
+import { AlertNotice, AlertType } from '../../../_models/alert-notice.model'
 
 @Component({
   selector: 'app-alert',
