@@ -27,7 +27,10 @@
     </div>
     <div class="text-center">
       <i *ngIf="!lstDecks.length && !isLoading"> ¡Vaya! Todavia no tienes ningún mazo<br></i>
-      <a class="underline" [routerLink]="'/deck/create'">Crea un nuevo mazo</a>
+      <!-- to insert a link to another page: -->
+      <!-- <a class="underline" [routerLink]="'/deck/create'">Crea un nuevo mazo</a> -->
+      <!-- make it look as button: -->
+      <a class="btn btn-ok" [routerLink]="'/deck/create'">Crea un nuevo mazo</a>
     </div>
     
   <app-popup
