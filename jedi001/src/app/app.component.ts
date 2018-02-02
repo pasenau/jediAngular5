@@ -9,8 +9,11 @@ import { AuthService } from './_shared/_services/auth.service'
 })
 export class AppComponent implements OnInit {
   title = 'my app'
+  // public pages, i.e. not needed to be logged in
   private readonly loginUrl = '/login'
   private readonly signinUrl = '/sign-in'
+  private readonly notFoundUrl = '/404'
+  // default page when logged in
   private readonly decksUrl = '/decks'
 
   constructor(
@@ -30,12 +33,14 @@ export class AppComponent implements OnInit {
         // podriem anar directament a mirar la cookie,
         // pero potser ho necesitem en un altre lloc --> servei
         const isLogged = this._auth.isLogged()
-        if ( url === this.loginUrl || url === this.signinUrl) {
-          if ( isLogged) {
-            this._router.navigateByUrl( this.decksUrl)
+        if ( url !== this.notFoundUrl) { // show always the 404 page
+          if ( url === this.loginUrl || url === this.signinUrl) {
+            if ( isLogged) {
+              this._router.navigateByUrl( this.decksUrl)
+            }
+          } else if ( !isLogged) {
+            this._router.navigateByUrl( this.loginUrl)
           }
-        } else if ( !isLogged) {
-          this._router.navigateByUrl( this.loginUrl)
         }
       }
     })
