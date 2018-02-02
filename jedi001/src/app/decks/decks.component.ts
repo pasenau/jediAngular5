@@ -71,7 +71,7 @@ export class DecksComponent implements OnInit {
     //   })           // funcion de la promise a executar quan hagi rebut del servidor
   }
 
-  onAcceptDelete( ) {
+  onAcceptDelete( event) {
     this.isLoading = true
     this._api
       .deleteDeck( this._deckToDeleteID) // aixo es una promise, no puc asumir que hagi acabat de donarlo d'alta.
