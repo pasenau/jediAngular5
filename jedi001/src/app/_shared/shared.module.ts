@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { AppPopupComponent } from './components/app-popup/app-popup.component'
 import { FormsModule } from '@angular/forms'
+import { AppAlertComponent } from './components/app-alert/app-alert.component'
 
 // de momento solo los componentes
 
@@ -10,12 +11,14 @@ import { FormsModule } from '@angular/forms'
     CommonModule
   ],
   declarations: [
-    AppPopupComponent
+    AppPopupComponent,
+    AppAlertComponent
   ],
   exports: [   // que componentes queremos exportar de este modulo
     FormsModule,    // podemos meter aqui los modulos de angular que usemos
     CommonModule,   // para que los tengan todos los otros modulos
-    AppPopupComponent   // y evitar hacer import en cada uno de ellos
+    AppPopupComponent,   // y evitar hacer import en cada uno de ellos
+    AppAlertComponent
   ]
 })
 export class SharedModule { }

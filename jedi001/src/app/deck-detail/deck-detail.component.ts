@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { ApiService } from '../_shared/_services/api.service'
 import { Router, ActivatedRoute } from '@angular/router'
 import ApiDeck from '../_models/api-deck.model'
+import { AlertService } from '../_shared/_services/alert.service';
 
 @Component({
   selector: 'app-deck-detail',
@@ -15,7 +16,8 @@ export class DeckDetailComponent implements OnInit {
   constructor(
     private _router: Router,
     private _route: ActivatedRoute, // para coger los parametros de la url
-    private _api: ApiService // injecto aqui el servei de comunicacio
+    private _api: ApiService, // injecto aqui el servei de comunicacio
+    private _alert: AlertService
   ) { }
 
   ngOnInit() {
@@ -43,6 +45,10 @@ export class DeckDetailComponent implements OnInit {
         console.log( response)
         // redireccionar a una altra pagina
         this._router.navigateByUrl( this.decksUrl)
+        // alertem aquí que es quan el server ha respost
+        this._alert.info( '¡ Felicidades ! Nuevo mazo creado.')
+      }).catch( err => {
+        this._alert.error( 'Error creando el mazo: el nombre ya existe')
       })
   }
 }

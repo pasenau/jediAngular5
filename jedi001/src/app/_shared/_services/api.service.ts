@@ -79,6 +79,7 @@ export class ApiService {
       this._auth.logout()
       this._router.navigateByUrl( this.loginUrl)
     }
+    throw err // per propagar el catch() a qui m'ha cridat, si no, el para executarà el then() !!!
   }
 
   // opcio2

@@ -1,0 +1,9 @@
+<div 
+  *ngIf="isShown"
+  class="alert"
+  [class.info]="isInfo()"
+  [class.error]="isError()"
+  >
+  <b>{{ alert.title }}</b>
+  <span>{{ alert.message }}</span>
+</div>

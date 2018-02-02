@@ -11,6 +11,7 @@ import { SignInComponent } from './sign-in/sign-in.component'
 import { ApiService } from './_shared/_services/api.service'
 import { AuthService } from './_shared/_services/auth.service'
 import { SharedModule } from './_shared/shared.module';
+import { AlertService } from './_shared/_services/alert.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { SharedModule } from './_shared/shared.module';
   providers: [
     ApiService,
     AuthService,
-    CookieService
+    CookieService,
+    AlertService
   ],
   bootstrap: [AppComponent]
 })
