@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   private readonly loginUrl = '/login'
   private readonly signinUrl = '/sign-in'
   private readonly notFoundUrl = '/404'
+  private readonly aboutUrl = '/'
   // default page when logged in
   private readonly decksUrl = '/decks'
 
@@ -33,14 +34,18 @@ export class AppComponent implements OnInit {
         // podriem anar directament a mirar la cookie,
         // pero potser ho necesitem en un altre lloc --> servei
         const isLogged = this._auth.isLogged()
-        if ( url !== this.notFoundUrl) { // show always the 404 page
-          if ( url === this.loginUrl || url === this.signinUrl) {
-            if ( isLogged) {
-              this._router.navigateByUrl( this.decksUrl)
-            }
-          } else if ( !isLogged) {
-            this._router.navigateByUrl( this.loginUrl)
+        if ( url === this.notFoundUrl  || url === this.aboutUrl) {
+          // show always the 404 page
+          return
+          // but still does not work for a non existing page /pepito
+          // because it enters here before the redirection by route.ts
+        }
+        if (url === this.loginUrl || url === this.signinUrl) {
+          if (isLogged) {
+            this._router.navigateByUrl(this.decksUrl)
           }
+        } else if (!isLogged) {
+          this._router.navigateByUrl(this.loginUrl)
         }
       }
     })
