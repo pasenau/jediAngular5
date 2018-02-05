@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { ApiService } from '../_shared/_services/api.service'
 import { Router } from '@angular/router'
-import { AuthService } from '../_shared/_services/auth.service';
-import ApiUser from '../_models/api-user.model';
+import { AuthService } from '../_shared/_services/auth.service'
+import ApiUser from '../_models/api-user.model'
 
 @Component({
   selector: 'app-login',
