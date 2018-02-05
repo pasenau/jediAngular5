@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnInit, ViewChild } from '@angular/core'
 import ApiCard from '../_models/api-card.model'
 import { ApiService } from '../_shared/_services/api.service'
 import ApiDeck from '../_models/api-deck.model'
+import { AppPopupComponent } from '../_shared/components/app-popup/app-popup.component'
 
 @Component({
   selector: 'app-cards',
@@ -12,13 +13,17 @@ export class CardsComponent implements OnInit {
   myUserID = ''
   lstCards: ApiCard[]
   isLoading = false
-  private _cardToDeleteID: string
+  private _cardToDelete: ApiCard
 
   constructor(
     private _api: ApiService
   ) {
     this.lstCards = []
   }
+
+   // decorator to access the <app-popup>
+   @ViewChild('deletePopup') deletePopup: AppPopupComponent  // declaramos el componente que queremos acceder
+   // el ViewChild ha de estar entre el constructor() i el ngOnInit()
 
   // i only can edit the cards i own.
   // as i don't have the user_id (neither the login process provides one)
@@ -75,14 +80,33 @@ export class CardsComponent implements OnInit {
       })
   }
 
-  onDelete( id: string, event: MouseEvent ) {
-    console.log( 'OnDelete ' + id)
-    event.stopPropagation()
+  onDelete( c: ApiCard, event: MouseEvent) { // tb puc accedir a les coordenades del mouse, etc...
+    this._cardToDelete = c
+    this.deletePopup.openPopup()
+    event.stopPropagation() // no pasar l'event als elements grafics inferiors: li, ul, div, div, body
   }
 
-  onEdit( id: string, event: MouseEvent ) {
-    console.log( 'OnDelete ' + id)
-    event.stopPropagation()
+  onAcceptDeleteCard( event) {
+    this.isLoading = true
+    console.log( 'onAcceptDeleteCard')
+    this._api
+      .deleteCard( this._cardToDelete.id) // aixo es una promise, no puc asumir que hagi acabat de donarlo d'alta.
+      // el server encara no m'ha contestat
+      .then( card => {
+        this.isLoading = false
+        const idxCard = this.lstCards.findIndex( c => c.id === this._cardToDelete.id)
+        this.lstCards.splice( idxCard, 1)
+        console.log( 'deleting ' + card.suit + ' of ' + card.value + ' ( ' + card.id + ' )')
+      })
+      .catch( err => {
+        console.log( 'Error deleting card: ' + err)
+        console.log( err)
+      })
   }
+
+  // onEdit( id: string, event: MouseEvent ) {
+  //   console.log( 'OnEdit ' + id)
+  //   event.stopPropagation()
+  // }
 
 }

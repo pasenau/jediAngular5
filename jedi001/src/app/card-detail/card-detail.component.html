@@ -1,8 +1,8 @@
 <div class="card-details">
     <!--<h1 class="text-center">♢ JEDI Cards ♢</h1>-->
-    <h4 class="text-center" *ngIf="this.myCard.editable && !myCard.id">crea una nueva carta</h4>
-    <h4 class="text-center" *ngIf="this.myCard.editable && myCard.id">edita la carta</h4>
-    <h4 class="text-center" *ngIf="!this.myCard.editable"> Sorry but this card is not editable, it's not yours</h4>
+    <h4 class="text-center" *ngIf="myCard && myCard.editable && !myCard.id">Crea una nueva carta</h4>
+    <h4 class="text-center" *ngIf="myCard && myCard.editable && myCard.id">Edita la carta</h4>
+    <h4 class="text-center" *ngIf="!isLoading && myCard && !myCard.editable">Sorry but this card is not editable, it isn't yours</h4>
 <form 
   #cardForm="ngForm"
   [class.disabled]="isLoading || !this.myCard.editable"
@@ -10,20 +10,23 @@
   >
   <div class="form-section">
     <label for="suit" >suit</label>
-    <input name="suit" type="text" [(ngModel)]="myCard.suit" />
+    <!--<input name="suit" type="text" [(ngModel)]="myCard.suit" />-->
+    <select name="suit" [(ngModel)]="myCard.suit">
+      <option *ngFor="let ss of [ 'Diamonds', 'Clubs', 'Hearts', 'Spades']" [value] = "ss">{{ss}}</option>
+    </select>
   </div>
   <div class="form-section">
     <label for="value" >value</label>
     <!--<input name="value" type="text" [(ngModel)]="myCard.value" />-->
     <select name="value" [(ngModel)]="myCard.value">
-      <option *ngFor="let val of [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']" [value]="val">{{val}}</option>
+      <option *ngFor="let val of [ 'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']" [value]="val">{{val}}</option>
     </select>
   </div>
   <div class="form-section">
     <label for="deck_id" >deck to which the card belongs</label>
     <!--<input name="value" type="text" [(ngModel)]="myCard.value" />-->
-    <select name="deck_id" [(ngModel)]="myCard.deck_id">
-      <option *ngFor="let deck of lstDecks" [value]="deck.id">{{deck.title}} ( {{deck.id}})</option>
+    <select name="deck_id" [(ngModel)]="myCard.deck_id" type="number">
+      <option *ngFor="let deck of lstDecks" [value]=deck.id>{{deck.title}} ( {{deck.id}})</option>
     </select>
   </div>
   <div class="form-section">

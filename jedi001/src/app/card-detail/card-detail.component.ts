@@ -13,7 +13,7 @@ import ApiDeck from '../_models/api-deck.model'
 export class CardDetailComponent implements OnInit {
   private readonly cardsUrl = '/cards'
   lstDecks: ApiDeck[]
-  isLoading = false
+  isLoading = 0
   myCard: ApiCard = new ApiCard()
 
   constructor(
@@ -26,6 +26,7 @@ export class CardDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isLoading++
     this._route.params.subscribe( p => { // para coger de la url (.../card/ID) el id de la carta
       // si no hi ha params, llavors p.id === null
       const { id } = p // const id = p.id
@@ -34,16 +35,20 @@ export class CardDetailComponent implements OnInit {
           .then( card => {
             this.myCard = card
             this.checkIfItsEditable()
+            this.isLoading--
           })
       } else {
         this.myCard.editable = true      // we're creating a new card
+        this.isLoading--
       }
     })
+    // list of decks needed to fill the form
     this.getListOfDecks()
   }
 
   checkIfItsEditable() {
     let myUserID = ''
+    this.isLoading++
     this._api
       .getDecks( ) // aixo es una promise, no puc asumir que hagi acabat de donarlo d'alta.
       // el server encara no m'ha contestat
@@ -60,18 +65,18 @@ export class CardDetailComponent implements OnInit {
             this.myCard.editable = false
           }
         }
+        this.isLoading--
       }
     )
   }
 
   getListOfDecks() {
     // convert my User form to a
-    this.isLoading = true
+    this.isLoading++
     this._api
-      .getDecks( ) // aixo es una promise, no puc asumir que hagi acabat de donarlo d'alta.
-      // el server encara no m'ha contestat
+      .getDecks( )
       .then( response => {
-        this.isLoading = false
+        this.isLoading--
         // el server m'ha respost
         this.lstDecks = response
       }
@@ -84,15 +89,20 @@ export class CardDetailComponent implements OnInit {
 
   onSend() {
     console.log( this.myCard)
-  //   this._api[ this.myCard.id ? 'putCard' : 'postCard']( this.myCard)
-  //     .then( response => {
-  //       console.log( response)
-  //       // redireccionar a una altra pagina
-  //       this._router.navigateByUrl( this.cardsUrl)
-  //       // alertem aquí que es quan el server ha respost
-  //       this._alert.info( '¡ Felicidades ! Nueva carta creada.')
-  //     }).catch( err => {
-  //       this._alert.error( 'Error creando la carta: ya existe')
-  //     })
+    // card.deck_id is a number and not a string
+    // the form's combobox puts a string, we need to transform it to a number
+    this.myCard.deck_id = Number( this.myCard.deck_id)
+    console.log( this.myCard)
+    this._api[ this.myCard.id ? 'putCard' : 'postCard']( this.myCard)
+      .then( response => {
+        console.log( response)
+        // redireccionar a una altra pagina
+        this._router.navigateByUrl( this.cardsUrl)
+        // alertem aquí que es quan el server ha respost
+        const txt = this.myCard.id ? ' Carta editada' : 'Nueva carta creada.'
+        this._alert.info( '¡ Felicidades ! ' + txt)
+      }).catch( err => {
+        this._alert.error( 'Error creando la carta: ya existe')
+      })
   }
 }

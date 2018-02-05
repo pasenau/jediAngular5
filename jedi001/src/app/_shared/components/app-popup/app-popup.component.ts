@@ -37,7 +37,7 @@ export class AppPopupComponent {
   }
   onAccept() {
     console.log( 'accept')
-    // this.accept.emit( 'Hello')
+    this.accept.emit( 'Hello')
     this.closePopup()
   }
 
