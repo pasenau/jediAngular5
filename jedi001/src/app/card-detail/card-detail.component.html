@@ -11,14 +11,14 @@
   <div class="form-section">
     <label for="suit" >suit</label>
     <!--<input name="suit" type="text" [(ngModel)]="myCard.suit" />-->
-    <select name="suit" [(ngModel)]="myCard.suit">
+    <select name="suit" [(ngModel)]="myCard.suit"  (click)="onGetAutomaticImage()">
       <option *ngFor="let ss of [ 'Diamonds', 'Clubs', 'Hearts', 'Spades']" [value] = "ss">{{ss}}</option>
     </select>
   </div>
   <div class="form-section">
     <label for="value" >value</label>
     <!--<input name="value" type="text" [(ngModel)]="myCard.value" />-->
-    <select name="value" [(ngModel)]="myCard.value">
+    <select name="value" [(ngModel)]="myCard.value"  (click)="onGetAutomaticImage()">
       <option *ngFor="let val of [ 'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']" [value]="val">{{val}}</option>
     </select>
   </div>
@@ -30,15 +30,12 @@
     </select>
   </div>
   <div class="form-section">
-    <label for="image" >image</label>
+    <label for="image">image</label>
     <input name="image" type="url" [(ngModel)]="myCard.image" />
+    <br>
     <img [src]="myCard.image">
   </div>
   <br>
-  <a 
-    class="btn btn-ok" 
-    (click)="onSend()" 
-    [class.disabled]="!isFormSendable( cardForm.valid) || isLoading"
-    >{{ myCard.id ? 'Update' : 'Create'}}</a>
-</form>
+  <a class="btn btn-ok" (click)="onSend()" [class.disabled]="!isFormSendable( cardForm.valid) || isLoading">{{ myCard.id ? 'Update' : 'Create'}}</a>
+  </form>
 </div>

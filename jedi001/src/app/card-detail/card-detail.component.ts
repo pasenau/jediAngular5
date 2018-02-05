@@ -12,6 +12,7 @@ import ApiDeck from '../_models/api-deck.model'
 })
 export class CardDetailComponent implements OnInit {
   private readonly cardsUrl = '/cards'
+  private readonly imagesUrl = 'https://jeux.prise2tete.fr/p2t-poker/images/'
   lstDecks: ApiDeck[]
   isLoading = 0
   myCard: ApiCard = new ApiCard()
@@ -105,4 +106,30 @@ export class CardDetailComponent implements OnInit {
         this._alert.error( 'Error creando la carta: ya existe')
       })
   }
+
+  onGetAutomaticImage() {
+    // valid suits are: 'Diamonds', 'Clubs', 'Hearts', 'Spades'
+    let image_name = ''
+    switch ( this.myCard.suit) {
+      case 'Diamonds':    image_name = 'carreau_';  break
+      case 'Clubs':       image_name = 'trefle_';   break
+      case 'Hearts':      image_name = 'coeur_';    break
+      case 'Spades':      image_name = 'pique_';    break
+    }
+    switch ( this.myCard.value) {
+      case 'K':   image_name += 'r'; break
+      case 'Q':   image_name += 'd'; break
+      case 'J':   image_name += 'v'; break
+      case 'A':   image_name += 'a'; break
+      default:
+        if ( ( this.myCard.value > '1') && ( this.myCard.value <= '9')) {
+          image_name += this.myCard.value
+        }
+        break
+    }
+    if ( image_name !== '') {
+      this.myCard.image = this.imagesUrl + image_name + '.png'
+    }
+  }
+
 }

@@ -13,13 +13,17 @@
       <div 
         class="col-xs-8">
           <h2>{{ card.suit}} - {{ card.value}}</h2>
+          <!--
           <small class="debug">ID: {{ card.id}} belongs to Deck ID: {{ card.deck_id}} and User ID: {{ card.deck?.user_id}}</small>
           <br>
           <small *ngIf="card.editable"> CARD IS EDITABLE </small>
+          -->
           <img 
             *ngIf="card.image !== '' && card.image !== null" 
             [src]="card.image">
-          <small class="debug">image = {{card.image === null ? '(null)' : card.image}}</small>
+          <!--
+            <small class="debug">image = {{card.image === null ? '(null)' : card.image}}</small>
+          -->
       </div>
       <div class="col-xs-2 text-right">
       <i *ngIf="card.editable"
