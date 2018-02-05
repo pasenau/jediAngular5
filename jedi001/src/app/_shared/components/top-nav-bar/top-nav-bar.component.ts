@@ -12,6 +12,8 @@ import { AppPopupComponent } from '../app-popup/app-popup.component';
 })
 export class TopNavBarComponent implements OnInit {
   private readonly loginUrl = '/login'
+  private readonly decksUrl = '/decks'
+  private readonly cardsUrl = '/cards'
   authAlert: AuthNotice = new AuthNotice() // sempre inicialitzar pq es cride isInfo() en carregar la aplicacio
   isShown = false
   userName = ''
@@ -55,5 +57,12 @@ export class TopNavBarComponent implements OnInit {
   onAcceptLogout( ev: MouseEvent) {
     // send logout event to AuthService
     this._auth.logout() // this will trigger logout event handled on ngOnInit()
+  }
+
+  onRedirectToDecks() {
+    this._router.navigateByUrl( this.decksUrl)
+  }
+  onRedirectToCards() {
+    this._router.navigateByUrl( this.cardsUrl)
   }
 }

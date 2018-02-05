@@ -1,13 +1,26 @@
 <div class="row nav-bar" *ngIf="isShown">
-  <div class="col-xs-10">
-    Hello user {{ userName}}
+  <div class="col-xs-6">
+    <p class="btn-nav-bar">Hello user {{ userName}}</p>
   </div>
   <div class="col-xs-2 text-right">
       <a 
-        class="btn btn-delete" 
+        class="btn btn-ok btn-nav-bar"
+        (click)="onRedirectToDecks()"
+        >Decks</a>
+  </div>
+  <div class="col-xs-2 text-right">
+      <a 
+        class="btn btn-ok btn-nav-bar"
+        (click)="onRedirectToCards()"
+        >Cards</a>
+        <!-- for [routerLink]="'/cards'"  to work it needs that the module inports the RouterModule -->
+  </div>
+  <div class="col-xs-2 text-right">
+      <a 
+        class="btn btn-cancel btn-nav-bar"
         (click)="onLogout( $event)" 
         >Logout</a>
-      </div>
+  </div>
 </div>
 <app-popup
 #logoutPopup
