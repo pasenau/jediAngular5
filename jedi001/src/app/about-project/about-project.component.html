@@ -39,3 +39,10 @@
     <button (click)="addAuthor()">Add author</button>
   </div>
 </div>
+
+<div class="row center-xs" *ngIf="!isLogged()">
+    <a 
+      class="btn btn-ok"
+      (click)="onRedirectToLogin()"
+      >Login</a>
+</div>
