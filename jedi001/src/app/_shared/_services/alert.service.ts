@@ -8,6 +8,9 @@ export class AlertService {
 
   // Subject que volem observar = enregistrar-nos i que ens avisi quan canvii
   private _alertSubject: Subject< AlertNotice> = new Subject< AlertNotice>()  // el tema que volem observar
+
+  // per a que la gent (app-alert.component) es pugui suscriure en aquesta alerta
+  // hem de crear l'observable:
   alert: Observable< AlertNotice> = this._alertSubject.asObservable()    // la subscripció al tema
   // molta gent segueix el conveni que els noms d'observables acaben en '$': alert$
   // pero en angular no ho recomanen ( no diuen res)

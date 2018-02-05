@@ -1,4 +1,5 @@
 export default class User {
+    user_id: number
     constructor(
         public name: string = '',
         public last_name: string = '',

@@ -1,0 +1,19 @@
+<div class="row nav-bar" *ngIf="isShown">
+  <div class="col-xs-10">
+    Hello user {{ userName}}
+  </div>
+  <div class="col-xs-2 text-right">
+      <a 
+        class="btn btn-delete" 
+        (click)="onLogout( $event)" 
+        >Logout</a>
+      </div>
+</div>
+<app-popup
+#logoutPopup
+[popupTitle]="'Atención'"
+[buttonNames] = "[ 'Logout', 'Cancelar']"
+(accept) = "onAcceptLogout( $event)"
+> 
+Are you sure you want to Logout ?
+</app-popup>

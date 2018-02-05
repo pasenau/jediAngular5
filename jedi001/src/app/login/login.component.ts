@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { ApiService } from '../_shared/_services/api.service'
 import { Router } from '@angular/router'
+import { AuthService } from '../_shared/_services/auth.service';
+import ApiUser from '../_models/api-user.model';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +24,8 @@ export class LoginComponent {
 
   constructor(
     private _router: Router,
-    private _api: ApiService // injecto aqui el servei de comunicacio
+    private _api: ApiService, // injecto aqui el servei de comunicacio
+    private _auth: AuthService // to set UserInfo and enable the Top Navigation Bar
   ) { }
 
   onSend() {
@@ -36,6 +39,8 @@ export class LoginComponent {
         // el server m'ha respost
         console.log( response)
         // redireccionar a una altra pagina
+        // get User
+        this.getUserIdAndEnableTopNavBar()
         this._router.navigateByUrl( this.decksUrl)
       })           // funcion de la promise a executar quan hagi rebut del servidor
       .catch( error => {
@@ -63,5 +68,20 @@ export class LoginComponent {
   isFormSendable( formValid: boolean) {
     return formValid && this.email.length && this.password.length && this.isPasswordCorrect && !this.isLoading
     // return formValid && this.arePasswordsEqual() && !this.isLoading
+  }
+
+  getUserIdAndEnableTopNavBar() {
+    let userID = -1
+    this._api
+      .getDecks( )
+      .then( lstDecks => {
+        if ( lstDecks !== []) { // shouldn't be empty
+          userID = lstDecks[ 0].user_id
+          console.log( 'My user_id is = ' + userID)
+          // now enable topNavBar
+          this._auth.setLoggedUserInfo( this.email, userID) // this will launch an event to the top-nav-bar component
+        }
+      }
+    )
   }
 }
