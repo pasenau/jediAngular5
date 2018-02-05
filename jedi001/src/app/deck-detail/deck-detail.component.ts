@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { ApiService } from '../_shared/_services/api.service'
 import { Router, ActivatedRoute } from '@angular/router'
 import ApiDeck from '../_models/api-deck.model'
-import { AlertService } from '../_shared/_services/alert.service';
+import { AlertService } from '../_shared/_services/alert.service'
 
 @Component({
   selector: 'app-deck-detail',

@@ -4,6 +4,7 @@ import ApiUser from '../../_models/api-user.model'
 import ApiDeck from '../../_models/api-deck.model'
 import { Router } from '@angular/router'
 import { AuthService } from './auth.service'
+import ApiCard from '../../_models/api-card.model'
 
 @Injectable()       // patro de diseny: DependencyInjection
 export class ApiService {
@@ -95,4 +96,32 @@ export class ApiService {
     .toPromise()
     .catch( e => this.handleError( e))
   }
+
+  // Cards api:
+  getCards( ): Promise< any> {
+    return this._http.get( this.apiUrl + 'cards')
+      .toPromise()
+      .catch( e => this.handleError( e))
+  }
+  getCard( id: string): Promise< any> {
+    return this._http.get( this.apiUrl + 'cards/' + id)
+      .toPromise()
+      .catch( e => this.handleError( e))
+  }
+  deleteCard( cardId: string): Promise< any> {
+    return this._http.delete( this.apiUrl + 'cards/' + cardId)
+    .toPromise()
+    .catch( e => this.handleError( e))
+  }
+  postCard( card: ApiCard) {
+    return this._http.post( this.apiUrl + 'cards', card)
+    .toPromise()
+    .catch( e => this.handleError( e))
+  }
+  putCard( card: ApiCard) {
+    return this._http.put( this.apiUrl + 'cards/' + card.id, card)
+    .toPromise()
+    .catch( e => this.handleError( e))
+  }
+
 }
