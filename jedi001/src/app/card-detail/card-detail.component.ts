@@ -85,7 +85,7 @@ export class CardDetailComponent implements OnInit {
   }
 
   isFormSendable( formValid: boolean) {
-    return formValid && this.myCard.suit.length && this.myCard.value.length
+    return formValid && this.myCard.suit.length && this.myCard.value.length && ( this.myCard.deck_id !== undefined)
   }
 
   onSend() {
@@ -110,11 +110,13 @@ export class CardDetailComponent implements OnInit {
   onGetAutomaticImage() {
     // valid suits are: 'Diamonds', 'Clubs', 'Hearts', 'Spades'
     let image_name = ''
+    let missing_info = false
     switch ( this.myCard.suit) {
       case 'Diamonds':    image_name = 'carreau_';  break
       case 'Clubs':       image_name = 'trefle_';   break
       case 'Hearts':      image_name = 'coeur_';    break
       case 'Spades':      image_name = 'pique_';    break
+      default:            missing_info = true;      break
     }
     switch ( this.myCard.value) {
       case 'K':   image_name += 'r'; break
@@ -124,10 +126,12 @@ export class CardDetailComponent implements OnInit {
       default:
         if ( ( this.myCard.value > '1') && ( this.myCard.value <= '9')) {
           image_name += this.myCard.value
+        } else {
+          missing_info = true
         }
         break
     }
-    if ( image_name !== '') {
+    if ( !missing_info) {
       this.myCard.image = this.imagesUrl + image_name + '.png'
     }
   }

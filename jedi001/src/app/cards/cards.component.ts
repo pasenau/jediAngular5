@@ -3,6 +3,7 @@ import ApiCard from '../_models/api-card.model'
 import { ApiService } from '../_shared/_services/api.service'
 import ApiDeck from '../_models/api-deck.model'
 import { AppPopupComponent } from '../_shared/components/app-popup/app-popup.component'
+import { AlertService } from '../_shared/_services/alert.service';
 
 @Component({
   selector: 'app-cards',
@@ -16,7 +17,8 @@ export class CardsComponent implements OnInit {
   private _cardToDelete: ApiCard
 
   constructor(
-    private _api: ApiService
+    private _api: ApiService,
+    private _alert: AlertService
   ) {
     this.lstCards = []
   }
@@ -96,11 +98,14 @@ export class CardsComponent implements OnInit {
         this.isLoading = false
         const idxCard = this.lstCards.findIndex( c => c.id === this._cardToDelete.id)
         this.lstCards.splice( idxCard, 1)
+        this._alert.info( 'Deleted ' + card.suit + ' of ' + card.value + ' ( ' + card.id + ' )')
         console.log( 'deleting ' + card.suit + ' of ' + card.value + ' ( ' + card.id + ' )')
       })
       .catch( err => {
         console.log( 'Error deleting card: ' + err)
         console.log( err)
+        this.isLoading = false
+        this._alert.error( 'El mazo no se ha podido borrar\n' + err)
       })
   }
 

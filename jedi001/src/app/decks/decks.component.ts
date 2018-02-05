@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core'
 import { ApiService } from '../_shared/_services/api.service'
 import ApiDeck from '../_models/api-deck.model'
 import { AppPopupComponent } from '../_shared/components/app-popup/app-popup.component'
+import { AlertService } from '../_shared/_services/alert.service';
 
 @Component({
   selector: 'app-decks',
@@ -15,7 +16,8 @@ export class DecksComponent implements OnInit {
   private _deckToDeleteID: string
 
   constructor(
-    private _api: ApiService // injecto aqui el servei de comunicacio
+    private _api: ApiService, // injecto aqui el servei de comunicacio
+    private _alert: AlertService
   ) {
     this.lstDecks = []
   }
@@ -85,7 +87,12 @@ export class DecksComponent implements OnInit {
         // - esborrar de lstDecks la que hem esborrat
         const idxDeck = this.lstDecks.findIndex( d => d.id === this._deckToDeleteID)
         this.lstDecks.splice( idxDeck, 1)
+        this._alert.info( 'Mazo borrado.')
         console.log( 'deleting ' + deck.title + ' ( ' + deck.id + ' )')
       })           // funcion de la promise a executar qu
+      .catch( err => {
+        this.isLoading = false
+        this._alert.error( 'El mazo no se ha podido borrar\n' + err)
+      })
   }
 }
