@@ -20,7 +20,7 @@ export class AppPopupComponent {
 
   // @Input --> para que se pueda acceder desde decks.components.HTML
   @Input() popupTitle: string
-  // si posem title directament, a decks...html 'title' es un atribut de tags i espot liar les coses, 
+  // si posem title directament, a decks...html 'title' es un atribut de tags i espot liar les coses,
   // el mateix amb el selectors, per aixo sempre comencen per app-XXX o ngXXX
   @Input() buttonNames: string[] = [ 'Aceptar', 'Cancelar']
   @Input() buttonStyles: string[] = [ 'btn-ok', 'btn-cancel']
