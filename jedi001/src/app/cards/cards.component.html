@@ -3,7 +3,7 @@
     <h4 class="text-center">Available cards</h4>
     <a 
       class="btn btn-ok" 
-      (click)="onSend()" 
+      (click)="doGetMyCards()" 
       [class.disabled]="isLoading"
     >{{ isLoading ? 'Cargando...' : 'Get cards'}}</a>
     <div *ngFor="let card of lstCards" 

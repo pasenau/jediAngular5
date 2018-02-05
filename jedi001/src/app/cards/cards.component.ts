@@ -14,7 +14,8 @@ export class CardsComponent implements OnInit {
   myUserID = ''
   lstCards: ApiCard[]
   isLoading = false
-  private _cardToDelete: ApiCard
+  // _cardToDelete was private but it needs to be accessed from html ...
+  _cardToDelete: ApiCard
 
   constructor(
     private _api: ApiService,
