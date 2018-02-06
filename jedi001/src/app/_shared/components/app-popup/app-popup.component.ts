@@ -35,6 +35,7 @@ export class AppPopupComponent {
     // so that the key bindongs works
     // timeout to give time that popupbox exists.
     setTimeout( () => this.popupBox.nativeElement.focus(), 200)
+    // or put the #popup & key bindings in an enclosing <div #popup (keyup.....></div> section
   }
   closePopup() {
     console.log( 'close')
