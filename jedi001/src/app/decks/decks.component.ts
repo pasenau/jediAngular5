@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core'
 import { ApiService } from '../_shared/_services/api.service'
 import ApiDeck from '../_models/api-deck.model'
 import { AppPopupComponent } from '../_shared/components/app-popup/app-popup.component'
-import { AlertService } from '../_shared/_services/alert.service';
+import { AlertService } from '../_shared/_services/alert.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-decks',
@@ -10,6 +11,7 @@ import { AlertService } from '../_shared/_services/alert.service';
   styleUrls: ['./decks.component.less']
 })
 export class DecksComponent implements OnInit {
+  private readonly cardsDecksUrl = '/cards/deck'
 
   lstDecks: ApiDeck[]
   isLoading = false
@@ -17,7 +19,8 @@ export class DecksComponent implements OnInit {
 
   constructor(
     private _api: ApiService, // injecto aqui el servei de comunicacio
-    private _alert: AlertService
+    private _alert: AlertService,
+    private _router: Router
   ) {
     this.lstDecks = []
   }
@@ -94,5 +97,10 @@ export class DecksComponent implements OnInit {
         this.isLoading = false
         this._alert.error( 'El mazo no se ha podido borrar\n' + err)
       })
+  }
+
+  onEditDeckCards(  id: string, event: MouseEvent) {
+    event.stopPropagation()
+    this._router.navigateByUrl( this.cardsDecksUrl + '/' + id)
   }
 }

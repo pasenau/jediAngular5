@@ -7,7 +7,8 @@ import { RouterModule } from '@angular/router'
 @NgModule({
   imports: [
     RouterModule.forChild( [
-      { path: '', component: CardsComponent}
+      { path: '', component: CardsComponent},
+      { path: 'deck/:id', component: CardsComponent}
     ]),
     // CommonModule, already in SharedModule
     SharedModule

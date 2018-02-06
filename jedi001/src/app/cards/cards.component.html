@@ -1,6 +1,7 @@
 <div class="cards">
     <h1 class="text-center">♢ JEDI Cards ♢</h1>
-    <h4 class="text-center">Available cards</h4>
+    <h4 class="text-center" *ngIf="!myDeck || !myDeck.title">All available cards</h4>
+    <h4 class="text-center" *ngIf="myDeck && myDeck.title">Available cards for deck '{{ myDeck.title}}'</h4>
     <a 
       class="btn btn-ok" 
       (click)="doGetMyCards()" 

@@ -3,7 +3,8 @@ import ApiCard from '../_models/api-card.model'
 import { ApiService } from '../_shared/_services/api.service'
 import ApiDeck from '../_models/api-deck.model'
 import { AppPopupComponent } from '../_shared/components/app-popup/app-popup.component'
-import { AlertService } from '../_shared/_services/alert.service';
+import { AlertService } from '../_shared/_services/alert.service'
+import { ActivatedRoute } from '@angular/router'
 
 @Component({
   selector: 'app-cards',
@@ -16,10 +17,12 @@ export class CardsComponent implements OnInit {
   isLoading = false
   // _cardToDelete was private but it needs to be accessed from html ...
   _cardToDelete: ApiCard
+  myDeck: ApiDeck = new ApiDeck()
 
   constructor(
     private _api: ApiService,
-    private _alert: AlertService
+    private _alert: AlertService,
+    private _route: ActivatedRoute // para coger los parametros de la url
   ) {
     this.lstCards = []
   }
@@ -34,7 +37,29 @@ export class CardsComponent implements OnInit {
   // get my list of decks, and from there get the user_id
 
   ngOnInit() {
-    this.doGetMyCards() // to automatically get the decks of cards and show them, i.e. no need to press the button
+    this._route.params.subscribe( p => { // cada cop que la ruta canvii em crida aquesta funcio
+      // si no hi ha params, llavors p.id === null
+      const { id } = p // const id = p.id
+      console.log( 'inside subscription')
+      console.log( p)
+      if ( id) {
+        this._api.getDeck( id)
+          .then( deck => {
+            // console.log( 'route of cards/deck')
+            console.log( deck)
+            this.myDeck = deck
+            deck.cards.forEach( deck_card => {
+              const card = deck_card
+              card.editable = true
+              this.lstCards.push( card)
+            })
+          })
+      } else {
+        // console.log( 'route/???')
+        this.doGetMyCards() // get all cards
+      }
+    })
+
   }
 
   doGetMyCards() {

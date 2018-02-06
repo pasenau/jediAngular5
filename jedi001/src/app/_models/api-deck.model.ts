@@ -1,3 +1,5 @@
+import ApiCard from "./api-card.model"
+
 export default class ApiDeck {
     id: string    // filled by server
     user_id: string    // filled by server
@@ -5,6 +7,7 @@ export default class ApiDeck {
     constructor(
         public title: string = '',
         public description: string = '',
+        public cards: ApiCard[] = []
     ) { }
     print() {
         console.log( 'title: ' + this.title)
