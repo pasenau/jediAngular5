@@ -1,5 +1,7 @@
 <div class="popup" *ngIf="isOpen" 
-tabindex="0"
+tabindex="-1"
+#popup
+(keyup.enter)="onAccept()" 
 (keyup.escape)="closePopup()"> <!-- tabindex so that <div> receives key events -->
   <h3 class="popup-title" *ngIf="popupTitle">{{ popupTitle}}</h3>
   <div class="popup-body">

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core'
 
 @Component({
   selector: 'app-popup',
@@ -28,8 +28,13 @@ export class AppPopupComponent {
 
   @Output() accept = new EventEmitter< any>()
 
+  @ViewChild( 'popup') popupBox: ElementRef
+
   openPopup() { // no fem onOpenPopup pq tb volem accedir desde fora
     this.isOpen = true
+    // so that the key bindongs works
+    // timeout to give time that popupbox exists.
+    setTimeout( () => this.popupBox.nativeElement.focus(), 200)
   }
   closePopup() {
     console.log( 'close')
