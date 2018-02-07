@@ -3,6 +3,7 @@ HTML Boilerplate
 HTML Snippets
 JavaScript (ES6) code snippets
 TSLint
+Angular language services
 
 TCL
 markdownlint
