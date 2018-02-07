@@ -3,6 +3,7 @@ import { ApiService } from '../_shared/_services/api.service'
 import { Router } from '@angular/router'
 import { AuthService } from '../_shared/_services/auth.service'
 import ApiUser from '../_models/api-user.model'
+import { gid_info } from '../../assets/gid_info'
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent {
 
   readonly minPasswordLength = 6  // readonly = const, private = només aquí
   private readonly decksUrl = '/decks'
+  readonly gidPort = gid_info.port
 
   email = ''
   password = ''
